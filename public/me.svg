@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#g)"/>
+  <circle cx="200" cy="190" r="70" fill="#8b5cf6" opacity="0.6"/>
+  <path d="M80 500 Q200 330 320 500 Z" fill="#8b5cf6" opacity="0.6"/>
+  <text x="200" y="460" text-anchor="middle" fill="#e2e8f0" font-family="monospace" font-size="16">replace with public/me.jpg</text>
+</svg>
