@@ -56,7 +56,7 @@ export default function Projects() {
         if (Array.isArray(data) && data.length > 0) setRepos(data);
       })
       .catch(() => {
-        /* fall back to static content — no error UI needed */
+        /* fall back to static content - no error UI needed */
       });
   }, []);
 

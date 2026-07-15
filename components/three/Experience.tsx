@@ -55,7 +55,7 @@ function HeroCore() {
     const s = Math.max(0.25, 1 - p * 1.6);
     m.scale.setScalar(damp(m.scale.x, s, 3, dt));
 
-    // Scroll velocity agitates the distortion — the "alive" feel.
+    // Scroll velocity agitates the distortion - the "alive" feel.
     if (mat.current) {
       mat.current.distort = damp(mat.current.distort, 0.35 + Math.min(v * 0.01, 0.35), 3, dt);
     }
@@ -208,7 +208,7 @@ function SkillRings() {
     b.current.rotation.x = -t * 0.3;
     b.current.rotation.z = t * 0.25;
 
-    // Only fully visible mid-page (skills section) — fade with scroll.
+    // Only fully visible mid-page (skills section) - fade with scroll.
     const p = scrollState.progress;
     const vis = THREE.MathUtils.smoothstep(p, 0.25, 0.5) * (1 - THREE.MathUtils.smoothstep(p, 0.75, 0.95));
     (a.current.material as THREE.MeshStandardMaterial).opacity = lerp(0, 0.85, vis);

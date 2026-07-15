@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Urjala Pariyar — Laravel + React Developer",
+  title: "Urjala Pariyar - Laravel + React Developer",
   description:
     "Portfolio of Urjala Pariyar, a full-stack developer crafting robust Laravel backends and animated React frontends.",
   metadataBase: new URL("https://github.com/ursche"),
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
       <body className="noise">
         <SmoothScroll>
-          {/* Persistent WebGL background — survives route changes */}
+          {/* Persistent WebGL background - survives route changes */}
           <SceneWrapper />
           <TransitionProvider>{children}</TransitionProvider>
         </SmoothScroll>

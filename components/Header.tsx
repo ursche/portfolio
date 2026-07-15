@@ -17,7 +17,7 @@ export default function Header() {
       className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-5 sm:px-10"
     >
       <a href="#hero" className="font-display text-lg font-bold tracking-tight">
-        UP<span className="text-neon">.</span>
+        Urjala<span className="text-neon">.</span>
       </a>
       <nav className="flex items-center gap-6 text-sm text-neutral-400">
         {LINKS.map(([label, href]) => (

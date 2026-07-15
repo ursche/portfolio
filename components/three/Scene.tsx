@@ -13,7 +13,7 @@ const Experience = lazy(() => import("./Experience"));
  *
  * Performance notes:
  *  - dpr capped at 1.8; AdaptiveDpr drops it further under load.
- *  - antialias off — the film grain + bloom-ish materials hide aliasing.
+ *  - antialias off - the film grain + bloom-ish materials hide aliasing.
  *  - single canvas for the whole site; sections share one render loop.
  */
 export default function Scene() {

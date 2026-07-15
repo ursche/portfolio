@@ -1,7 +1,7 @@
 /**
  * Mutable scroll state shared between the Lenis loop (DOM world) and the
  * R3F render loop (WebGL world). Written on every Lenis scroll tick and
- * read inside useFrame — no React re-renders involved, which is what keeps
+ * read inside useFrame - no React re-renders involved, which is what keeps
  * scroll-linked 3D animation cheap.
  */
 export const scrollState = {

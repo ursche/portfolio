@@ -11,7 +11,7 @@ import {
 
 /**
  * Reusable perspective tilt card with a moving glare highlight.
- * All motion runs through MotionValues — zero React re-renders on mousemove.
+ * All motion runs through MotionValues - zero React re-renders on mousemove.
  */
 export default function TiltCard({
   children,

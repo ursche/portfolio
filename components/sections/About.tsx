@@ -18,9 +18,8 @@ export default function About() {
         >
           <TiltCard className="mx-auto aspect-[4/5] w-full max-w-sm">
             <div className="relative h-full w-full overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900">
-              {/* Replace public/me.svg with your actual photo (public/me.jpg) */}
               <Image
-                src="/me.svg"
+                src="/urjala.jpeg"
                 alt="Urjala Pariyar"
                 fill
                 sizes="(max-width: 768px) 90vw, 400px"
@@ -52,7 +51,7 @@ export default function About() {
             Full-stack, <span className="text-neon">two engines</span>.
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 leading-relaxed text-neutral-400">
-            I&apos;m Urjala — a developer who lives on both sides of the request.
+            I&apos;m Urjala - a developer who lives on both sides of the request.
             On the backend I build robust, elegant APIs and applications with{" "}
             <span className="text-ember">Laravel</span>; on the frontend I turn
             them into fast, animated, human interfaces with{" "}
