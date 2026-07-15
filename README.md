@@ -17,11 +17,6 @@ npm install
 npm run dev
 ```
 
-## Personalize
-
-- Replace `public/me.svg` with your photo and update the `src` in `components/sections/About.tsx` (e.g. `/me.jpg`).
-- The Projects grid live-fetches your latest public repos from the GitHub API and falls back to static content offline.
-
 ## Performance notes
 
 - Single `<Canvas>` for the whole site, mounted in the root layout behind the DOM.
