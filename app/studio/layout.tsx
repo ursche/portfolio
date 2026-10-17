@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { requireAuthor } from "@/lib/blog/auth";
 
 export const metadata: Metadata = {
-  title: "Studio - Urjala Pariyar",
-  robots: { index: false },
+  title: "Studio",
+  robots: { index: false, follow: false },
 };
 
 export default async function StudioLayout({ children }: { children: React.ReactNode }) {

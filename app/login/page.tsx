@@ -6,8 +6,8 @@ import { createServerSupabase } from "@/lib/supabase/server";
 import LoginButton from "./LoginButton";
 
 export const metadata: Metadata = {
-  title: "Sign in - Urjala Pariyar",
-  robots: { index: false },
+  title: "Sign in",
+  robots: { index: false, follow: false },
 };
 
 const ERRORS: Record<string, string> = {

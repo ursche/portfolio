@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/JsonLd";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import { formatDate } from "@/lib/blog/content";
 import { getPublishedPost, getPublishedPosts, renderPostHTML } from "@/lib/blog/posts";
+import { BASE_OPEN_GRAPH, RSS_ALTERNATE, SITE, absoluteUrl } from "@/lib/site";
 
 export const revalidate = 3600;
 // Posts published after the last build are rendered on first request, then cached.
@@ -28,15 +30,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   const description = post.subtitle || post.excerpt;
+  const path = `/blog/${post.slug}`;
+
   return {
-    title: `${post.title} - Urjala Pariyar`,
+    title: post.title,
     description,
+    authors: [{ name: SITE.name, url: SITE.url }],
+    alternates: { canonical: path, types: RSS_ALTERNATE },
     openGraph: {
+      ...BASE_OPEN_GRAPH,
       type: "article",
+      url: path,
       title: post.title,
       description,
       publishedTime: post.published_at ?? undefined,
-      images: post.cover_image_url ? [post.cover_image_url] : undefined,
+      modifiedTime: post.updated_at,
+      authors: [SITE.url],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
     },
   };
 }
@@ -45,8 +59,40 @@ export default async function PostPage({ params }: Props) {
   const post = await getPublishedPost(params.slug);
   if (!post) notFound();
 
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        headline: post.title,
+        description: post.subtitle || post.excerpt,
+        url,
+        mainEntityOfPage: url,
+        image: post.cover_image_url ?? absoluteUrl(`/blog/${post.slug}/opengraph-image`),
+        datePublished: post.published_at ?? undefined,
+        dateModified: post.updated_at,
+        inLanguage: "en",
+        timeRequired: `PT${post.reading_minutes}M`,
+        author: { "@type": "Person", "@id": absoluteUrl("/#person"), name: SITE.name, url: absoluteUrl("/") },
+        publisher: { "@type": "Person", "@id": absoluteUrl("/#person"), name: SITE.name },
+        isPartOf: { "@type": "Blog", "@id": absoluteUrl("/blog#blog") },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+          { "@type": "ListItem", position: 3, name: post.title, item: url },
+        ],
+      },
+    ],
+  };
+
   return (
     <article className="pb-24 pt-32">
+      <JsonLd data={structuredData} />
       <ReadingProgress />
 
       <header className="mx-auto max-w-[44rem] px-6">
@@ -72,9 +118,14 @@ export default async function PostPage({ params }: Props) {
             className="h-11 w-11 rounded-full object-cover"
           />
           <div className="text-sm">
-            <p className="font-medium text-neutral-200">Urjala Pariyar</p>
+            <p className="font-medium text-neutral-200">
+              <Link href="/" rel="author" className="transition-colors hover:text-laser">
+                Urjala Pariyar
+              </Link>
+            </p>
             <p className="text-neutral-500">
-              {post.reading_minutes} min read · {formatDate(post.published_at)}
+              {post.reading_minutes} min read ·{" "}
+              <time dateTime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time>
             </p>
           </div>
         </div>
@@ -84,7 +135,7 @@ export default async function PostPage({ params }: Props) {
         <div className="relative mx-auto mt-10 aspect-[16/9] max-w-4xl overflow-hidden sm:rounded-xl">
           <Image
             src={post.cover_image_url}
-            alt=""
+            alt={post.title}
             fill
             priority
             sizes="(max-width: 896px) 100vw, 896px"

@@ -9,7 +9,8 @@ export default function PostCard({ post }: { post: PostSummary }) {
       <Link href={`/blog/${post.slug}`} className="flex items-start gap-6 sm:gap-10">
         <div className="min-w-0 flex-1">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
-            {formatDate(post.published_at)} · {post.reading_minutes} min read
+            <time dateTime={post.published_at ?? undefined}>{formatDate(post.published_at)}</time> ·{" "}
+            {post.reading_minutes} min read
           </p>
           <h2 className="mt-3 font-display text-2xl font-bold leading-tight transition-colors group-hover:text-laser sm:text-3xl">
             {post.title || "Untitled"}
