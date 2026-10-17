@@ -17,5 +17,5 @@ export type Post = {
 
 export type PostSummary = Pick<
   Post,
-  "slug" | "title" | "subtitle" | "cover_image_url" | "excerpt" | "reading_minutes" | "published_at"
+  "slug" | "title" | "subtitle" | "cover_image_url" | "excerpt" | "reading_minutes" | "published_at" | "updated_at"
 >;

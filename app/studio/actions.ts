@@ -16,9 +16,12 @@ export type PostDraft = {
   content: JSONContent;
 };
 
-/** Drop the cached ISR pages that show this post. */
+/** Drop the cached ISR pages that show this post (home lists the latest ones). */
 function revalidatePost(...slugs: (string | null | undefined)[]) {
+  revalidatePath("/");
   revalidatePath("/blog");
+  revalidatePath("/sitemap.xml");
+  revalidatePath("/feed.xml");
   slugs
     .filter((slug, i) => slug && slugs.indexOf(slug) === i)
     .forEach((slug) => revalidatePath(`/blog/${slug}`));

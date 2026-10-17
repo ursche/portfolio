@@ -1,31 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "@/lib/variants";
-
-const GITHUB_USER = "ursche";
-
-type Repo = {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  language: string | null;
-  stargazers_count: number;
-};
-
-/** Shown until (or if) the live GitHub fetch resolves. */
-const FALLBACK: Repo[] = [
-  {
-    id: 1,
-    name: "your-project-here",
-    description: "Pin your best repos on GitHub and they will appear here automatically.",
-    html_url: `https://github.com/${GITHUB_USER}`,
-    language: "PHP",
-    stargazers_count: 0,
-  },
-];
+import { GITHUB_USER, type Repo } from "@/lib/github";
 
 const LANG_COLOR: Record<string, string> = {
   PHP: "bg-indigo-400",
@@ -46,22 +23,9 @@ const cardVariants = {
   },
 };
 
-export default function Projects() {
-  const [repos, setRepos] = useState<Repo[]>(FALLBACK);
-
-  useEffect(() => {
-    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=6`)
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((data: Repo[]) => {
-        if (Array.isArray(data) && data.length > 0) setRepos(data);
-      })
-      .catch(() => {
-        /* fall back to static content - no error UI needed */
-      });
-  }, []);
-
+export default function Projects({ repos }: { repos: Repo[] }) {
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-6 py-32">
+    <section id="projects" aria-labelledby="projects-heading" className="mx-auto max-w-6xl px-6 py-32">
       <motion.div
         variants={staggerContainer(0.1)}
         initial="hidden"
@@ -71,7 +35,7 @@ export default function Projects() {
         <motion.p variants={fadeUp} className="font-mono text-sm uppercase tracking-[0.4em] text-laser">
           Projects
         </motion.p>
-        <motion.h2 variants={fadeUp} className="mt-4 font-display text-4xl font-bold sm:text-5xl">
+        <motion.h2 id="projects-heading" variants={fadeUp} className="mt-4 font-display text-4xl font-bold sm:text-5xl">
           Built in <span className="text-neon">public</span>.
         </motion.h2>
 
