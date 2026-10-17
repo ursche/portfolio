@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Source_Serif_4, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import TransitionProvider from "@/components/TransitionProvider";
@@ -7,6 +7,7 @@ import SceneWrapper from "@/components/three/SceneWrapper";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
+const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif", style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
   title: "Urjala Pariyar - Laravel + React Developer",
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${grotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${grotesk.variable} ${serif.variable}`}>
       <body className="noise">
         <SmoothScroll>
           {/* Persistent WebGL background - survives route changes */}

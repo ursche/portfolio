@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
@@ -13,13 +14,14 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
       },
       animation: {
         "spin-slow": "spin 12s linear infinite",
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 
 export default config;

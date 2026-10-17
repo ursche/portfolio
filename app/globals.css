@@ -48,3 +48,32 @@ html.lenis body {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
   color: transparent;
 }
+
+/* Long-form post typography, shared by the public post page and the editor */
+.post-body {
+  @apply prose prose-lg prose-invert max-w-none font-serif text-neutral-300;
+  @apply prose-headings:font-display prose-headings:tracking-tight prose-headings:text-white;
+  @apply prose-a:text-laser prose-a:underline-offset-4 hover:prose-a:text-white;
+  @apply prose-blockquote:border-l-neon prose-blockquote:font-normal prose-blockquote:italic prose-blockquote:text-neutral-400;
+  @apply prose-code:rounded prose-code:bg-neutral-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:before:content-none prose-code:after:content-none;
+  @apply prose-pre:border prose-pre:border-neutral-800 prose-pre:bg-neutral-950;
+  @apply prose-img:mx-auto prose-img:rounded-lg prose-hr:border-neutral-800;
+}
+
+.post-body pre code {
+  @apply bg-transparent p-0;
+}
+
+/* Editor */
+.post-body.ProseMirror {
+  @apply min-h-[40vh] outline-none;
+}
+
+.post-body.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none float-left h-0 text-neutral-600;
+}
+
+.post-body.ProseMirror img.ProseMirror-selectednode {
+  @apply ring-2 ring-neon;
+}
