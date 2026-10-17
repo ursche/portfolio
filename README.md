@@ -23,3 +23,24 @@ npm run dev
 - Scroll/pointer values flow into `useFrame` through mutable refs - zero React re-renders per frame.
 - DPR capped at 1.8 with `AdaptiveDpr`, antialias off, shared geometries, one draw call for 2,400 particles.
 - Three.js is client-only via `next/dynamic` and `React.lazy`, keeping it off the critical path.
+
+## Blog
+
+Medium-style blog at `/blog`, written in a private studio at `/studio`.
+
+- **Supabase** stores posts (Tiptap JSON) and images (`blog-images` storage bucket).
+- **ISR**: `/blog` and `/blog/[slug]` are static, revalidated hourly and on demand whenever a post is published, updated, unpublished or deleted.
+- **Auth**: GitHub OAuth through Supabase. Only GitHub usernames in the `blog_authors` table can write; this is enforced by row-level security on posts and storage, so other GitHub users who sign in can read but never write.
+
+### Setup
+
+1. Create a Supabase project and run `supabase/migrations/20261012000000_blog.sql` in the SQL editor (or `supabase db push`).
+2. Allowlist yourself:
+   ```sql
+   insert into public.blog_authors (github_username) values ('ursche');
+   ```
+3. Create a GitHub OAuth app with callback URL `https://<project-ref>.supabase.co/auth/v1/callback`, then enable the GitHub provider in Supabase (Authentication > Providers) with its client ID and secret.
+4. In Supabase Authentication > URL Configuration, set the Site URL to your domain and add `http://localhost:3000/auth/callback` and `https://<your-domain>/auth/callback` to the redirect URLs.
+5. `cp .env.example .env.local` and fill in the project URL and anon key.
+
+Then sign in at `/login` and write at `/studio`.
