@@ -77,3 +77,99 @@ html.lenis body {
 .post-body.ProseMirror img.ProseMirror-selectednode {
   @apply ring-2 ring-neon;
 }
+
+/* Chat assistant mascot (components/assistant). Pixel art, so motion moves in whole-pixel steps. */
+.asst-bob {
+  animation: asst-bob 1.6s step-end infinite;
+}
+
+.asst-eyes-open {
+  animation: asst-blink-open 4.8s step-end infinite;
+}
+
+.asst-eyes-blink {
+  opacity: 0;
+  animation: asst-blink-closed 4.8s step-end infinite;
+}
+
+.asst-eyes-happy,
+.asst-arm-up {
+  display: none;
+}
+
+/* Wave on hover, keyboard focus or while the greeting bubble shows */
+.asst-launcher:hover .asst-arm-up,
+.asst-launcher:focus-visible .asst-arm-up,
+.asst-root[data-wave] .asst-arm-up {
+  display: inline;
+}
+
+.asst-launcher:hover .asst-arm-down,
+.asst-launcher:focus-visible .asst-arm-down,
+.asst-root[data-wave] .asst-arm-down {
+  display: none;
+}
+
+.asst-hand {
+  animation: asst-wave 0.5s step-end infinite;
+}
+
+/* Thinking: happy closed eyes */
+.asst-root[data-busy] .asst-eyes-open,
+.asst-root[data-busy] .asst-eyes-blink {
+  display: none;
+}
+
+.asst-root[data-busy] .asst-eyes-happy {
+  display: inline;
+}
+
+.asst-launcher svg {
+  transition: transform 0.2s;
+}
+
+.asst-launcher:hover svg {
+  transform: translateY(-2px);
+}
+
+.asst-launcher:active svg {
+  transform: scale(0.95);
+}
+
+.asst-dot {
+  animation: asst-dot 1s ease-in-out infinite;
+}
+
+@keyframes asst-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+}
+
+@keyframes asst-blink-open {
+  0%, 100% { opacity: 1; }
+  94% { opacity: 0; }
+  97% { opacity: 1; }
+}
+
+@keyframes asst-blink-closed {
+  0%, 100% { opacity: 0; }
+  94% { opacity: 1; }
+  97% { opacity: 0; }
+}
+
+@keyframes asst-wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-1px); }
+}
+
+@keyframes asst-dot {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-3px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asst-bob,
+  .asst-hand {
+    animation: none;
+  }
+}

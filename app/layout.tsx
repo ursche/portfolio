@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import TransitionProvider from "@/components/TransitionProvider";
 import SceneWrapper from "@/components/three/SceneWrapper";
+import Assistant from "@/components/assistant/Assistant";
 import { BASE_OPEN_GRAPH, RSS_ALTERNATE, SITE } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
@@ -57,6 +58,8 @@ export default function RootLayout({
           {/* Persistent WebGL background - survives route changes */}
           <SceneWrapper />
           <TransitionProvider>{children}</TransitionProvider>
+          {/* Chat robot, outside the page transition so it stays put between routes */}
+          <Assistant />
         </SmoothScroll>
       </body>
     </html>

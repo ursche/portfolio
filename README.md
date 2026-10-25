@@ -17,6 +17,15 @@ npm install
 npm run dev
 ```
 
+## Chat assistant
+
+The chibi pixel-art mascot in the bottom-right corner answers questions about Urjala using the `portfolio-assistant` Cloudflare Worker.
+
+- `components/assistant/` holds the widget (`Assistant.tsx`), the mascot (`Mascot.tsx`, drawn as pixel grids you can edit) and a small Markdown formatter for replies.
+- `app/api/chat/route.ts` forwards questions to the Worker so the shared secret never reaches the browser.
+- It shows one question and its answer at a time. Nothing is saved, and each question is sent on its own without earlier ones.
+- Set `ASSISTANT_URL` and `ASSISTANT_SECRET` in `.env.local` and in Vercel (see `.env.example`). Without them the chat replies with a "not set up yet" message.
+
 ## Performance notes
 
 - Single `<Canvas>` for the whole site, mounted in the root layout behind the DOM.
