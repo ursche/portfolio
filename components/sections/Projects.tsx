@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "@/components/icons";
 import { staggerContainer, fadeUp } from "@/lib/variants";
 import { GITHUB_USER, type Repo } from "@/lib/github";
 
@@ -67,7 +68,7 @@ export default function Projects({ repos }: { repos: Repo[] }) {
                     {repo.name}
                   </h3>
                   <span className="text-neutral-500 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-laser">
-                    ↗
+                    <ArrowUpRight className="text-lg" />
                   </span>
                 </div>
                 <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-neutral-400">
@@ -93,9 +94,9 @@ export default function Projects({ repos }: { repos: Repo[] }) {
             href={`https://github.com/${GITHUB_USER}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-full border border-neutral-700 px-8 py-3 font-medium text-neutral-300 transition-all duration-300 hover:scale-105 hover:border-laser hover:text-laser"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-8 py-3 font-medium text-neutral-300 transition-all duration-300 hover:scale-105 hover:border-laser hover:text-laser"
           >
-            All repositories on GitHub ↗
+            All repositories on GitHub <ArrowUpRight />
           </a>
         </motion.div>
       </motion.div>

@@ -53,9 +53,9 @@ export default function About() {
           <motion.p variants={fadeUp} className="mt-6 leading-relaxed text-neutral-400">
             I&apos;m Urjala - a developer who lives on both sides of the request.
             On the backend I build robust, elegant APIs and applications with{" "}
-            <span className="text-ember">Laravel</span>; on the frontend I turn
+            <em className="font-serif text-[1.1em] text-white">Laravel</em>; on the frontend I turn
             them into fast, animated, human interfaces with{" "}
-            <span className="text-laser">React</span>.
+            <em className="font-serif text-[1.1em] text-white">React</em>.
           </motion.p>
           <motion.p variants={fadeUp} className="mt-4 leading-relaxed text-neutral-400">
             I care about the details most people scroll past: query counts,

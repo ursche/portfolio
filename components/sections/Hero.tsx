@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "@/components/icons";
 import { staggerContainer, letterReveal, fadeUp } from "@/lib/variants";
 
 const NAME = "Urjala Pariyar";
@@ -16,9 +17,9 @@ export default function Hero() {
         initial="hidden"
         animate="show"
         transition={{ delay: 0.2 }}
-        className="mb-6 font-mono text-sm uppercase tracking-[0.4em] text-laser"
+        className="mb-4 font-serif text-2xl italic text-neutral-400 sm:text-3xl"
       >
-        Hello, I build for the web
+        hi, I&apos;m
       </motion.p>
 
       {/* Per-letter masked reveal */}
@@ -47,12 +48,11 @@ export default function Hero() {
         initial="hidden"
         animate="show"
         transition={{ delay: 1 }}
-        className="mt-8 text-xl text-neutral-300 sm:text-2xl"
+        className="mt-8 max-w-xl text-lg leading-relaxed text-neutral-400 sm:text-xl"
       >
-        <span className="text-ember">Laravel</span>
-        <span className="mx-3 text-neutral-600">+</span>
-        <span className="text-laser">React</span>
-        <span className="ml-3 text-neutral-400">Developer</span>
+        I build web apps end to end:{" "}
+        <em className="font-serif text-[1.1em] text-white">Laravel</em> on the server,{" "}
+        <em className="font-serif text-[1.1em] text-white">React</em> in the browser.
       </motion.h2>
 
       <motion.div
@@ -72,27 +72,12 @@ export default function Hero() {
           href="https://github.com/ursche"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-neutral-700 px-8 py-3 font-medium text-neutral-300 transition-colors duration-300 hover:border-laser hover:text-laser"
+          className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-8 py-3 font-medium text-neutral-300 transition-colors duration-300 hover:border-laser hover:text-laser"
         >
-          GitHub ↗
+          GitHub <ArrowUpRight />
         </a>
       </motion.div>
 
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          className="flex h-10 w-6 items-start justify-center rounded-full border border-neutral-600 p-1.5"
-        >
-          <div className="h-2 w-1 rounded-full bg-laser" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
