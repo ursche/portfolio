@@ -170,7 +170,8 @@ export default function Mascot({ variant = "full", className }: Props) {
   return (
     <svg
       className={className}
-      viewBox={full ? `-1 -1 ${WIDTH + 2} ${HEIGHT + 2}` : "2 -1 28 25"}
+      // Extra pixel of headroom on top so the outline is not cut off when the bob animation lifts her 1px.
+      viewBox={full ? `-1 -2 ${WIDTH + 2} ${HEIGHT + 3}` : "2 -1 28 25"}
       shapeRendering="crispEdges"
       aria-hidden="true"
       focusable="false"
