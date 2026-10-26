@@ -12,6 +12,7 @@ type Exchange = {
   error?: boolean;
 };
 
+const ASSISTANT_NAME = "Bubliiii"; // keep in sync with the Worker's ASSISTANT_NAME
 const GREETED_KEY = "asst-greeted";
 const MAX_QUESTION = 500; // matches the Worker's limit
 const HIDDEN_ON = ["/studio", "/login", "/auth"];
@@ -183,7 +184,7 @@ function AssistantWidget() {
           <motion.div
             id="asst-panel"
             role="dialog"
-            aria-label="Chat assistant"
+            aria-label={`Chat with ${ASSISTANT_NAME}`}
             initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.97 }}
@@ -199,7 +200,7 @@ function AssistantWidget() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="font-display text-base font-semibold leading-tight text-white">
-                  Ask me about Urjala
+                  {ASSISTANT_NAME}
                 </p>
                 <p className="flex items-center gap-1.5 text-xs text-neutral-400">
                   <span className={`h-1.5 w-1.5 rounded-full ${busy ? "animate-pulse bg-laser" : "bg-laser/70"}`} />
@@ -232,7 +233,7 @@ function AssistantWidget() {
                 </>
               ) : (
                 <p className="text-sm leading-relaxed text-neutral-400">
-                  I can tell you about Urjala&rsquo;s skills, projects and experience. I can get things wrong, so email{" "}
+                  Hi, I&rsquo;m {ASSISTANT_NAME}! I can tell you about Urjala&rsquo;s skills, projects and experience. I can get things wrong, so email{" "}
                   <a href="mailto:urjalaa@gmail.com" className="text-laser underline underline-offset-2 hover:text-white">
                     urjalaa@gmail.com
                   </a>{" "}
@@ -310,7 +311,7 @@ function AssistantWidget() {
               exit={{ opacity: 0, x: 8, scale: 0.9 }}
               className="absolute bottom-14 right-[84px] whitespace-nowrap rounded-2xl rounded-br-sm border border-neon/40 bg-void/90 px-3.5 py-2 text-sm font-medium text-white shadow-lg shadow-neon/20 backdrop-blur"
             >
-              Hi! Ask me about Urjala <span className="text-laser">✦</span>
+              Hi, I&rsquo;m {ASSISTANT_NAME}! Ask me about Urjala <span className="text-laser">✦</span>
             </motion.button>
           )}
         </AnimatePresence>
@@ -319,7 +320,7 @@ function AssistantWidget() {
           ref={launcherRef}
           type="button"
           onClick={toggle}
-          aria-label={open ? "Close the chat" : "Ask the assistant about Urjala"}
+          aria-label={open ? "Close the chat" : `Ask ${ASSISTANT_NAME} about Urjala`}
           aria-expanded={open}
           aria-controls="asst-panel"
           className="asst-launcher relative block h-[96px] w-[78px] rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-laser"

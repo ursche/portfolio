@@ -19,7 +19,7 @@ npm run dev
 
 ## Chat assistant
 
-The chibi pixel-art mascot in the bottom-right corner answers questions about Urjala using the `portfolio-assistant` Cloudflare Worker.
+Bubliiii, the chibi pixel-art mascot in the bottom-right corner, answers questions about Urjala using the `portfolio-assistant` Cloudflare Worker.
 
 - `components/assistant/` holds the widget (`Assistant.tsx`), the mascot (`Mascot.tsx`, drawn as pixel grids you can edit) and a small Markdown formatter for replies.
 - `app/api/chat/route.ts` forwards questions to the Worker so the shared secret never reaches the browser.
