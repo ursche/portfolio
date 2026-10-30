@@ -392,6 +392,13 @@ function MenuButton({
   );
 }
 
+// Defined once, outside the component: the menus re-send their options to the
+// editor whenever these change identity, and since the editor re-renders on
+// every transaction, inline values would loop forever.
+const bubbleShouldShow = ({ editor, from, to }: { editor: Editor; from: number; to: number }) =>
+  from !== to && !editor.isActive("image");
+const floatingOptions = { placement: "left", offset: 16 } as const;
+
 function EditorMenus({ editor, onImage }: { editor: Editor; onImage: (file: File) => void }) {
   const [linkMode, setLinkMode] = useState(false);
   const [href, setHref] = useState("");
@@ -409,7 +416,7 @@ function EditorMenus({ editor, onImage }: { editor: Editor; onImage: (file: File
     <>
       <BubbleMenu
         editor={editor}
-        shouldShow={({ editor, from, to }) => from !== to && !editor.isActive("image")}
+        shouldShow={bubbleShouldShow}
         className="z-50 flex items-center rounded-lg border border-neutral-800 bg-neutral-950 px-1 py-1 shadow-xl shadow-black/40"
       >
         {linkMode ? (
@@ -470,7 +477,7 @@ function EditorMenus({ editor, onImage }: { editor: Editor; onImage: (file: File
       <FloatingMenu
         editor={editor}
         className="relative z-50"
-        options={{ placement: "left", offset: 16 }}
+        options={floatingOptions}
       >
         <button
           type="button"
